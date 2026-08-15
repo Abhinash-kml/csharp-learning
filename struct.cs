@@ -12,6 +12,14 @@ Console.WriteLine($"Point Q - {q.X} - {q.Y}");
 Student s = new Student();
 s.Describe();
 Meow(s);
+if (p == q)
+{
+    Console.WriteLine("Equal");
+}
+else
+{
+    Console.WriteLine("Not Equal");
+}
 // s.Name = "Haha";
 
 
