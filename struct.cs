@@ -1,11 +1,17 @@
 using System.IO;
 
+static void Meow(Student s)
+{
+    s.Describe();
+}
+
 Point p = new Point(10.5f, 20.5f);
 Console.WriteLine($"Point P - {p.X} - {p.Y}");
 Point q = default;
 Console.WriteLine($"Point Q - {q.X} - {q.Y}");
 Student s = new Student();
 s.Describe();
+Meow(s);
 // s.Name = "Haha";
 
 
