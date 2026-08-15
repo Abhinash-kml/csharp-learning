@@ -5,6 +5,7 @@ Console.WriteLine($"Point P - {p.X} - {p.Y}");
 Point q = default;
 Console.WriteLine($"Point Q - {q.X} - {q.Y}");
 Student s = new Student();
+s.Describe();
 // s.Name = "Haha";
 
 
@@ -30,5 +31,10 @@ internal readonly struct Student
     {
         Name = name;
         Age = age;
+    }
+
+    public void Describe()
+    {
+        Console.WriteLine($"Student - {Name} - {Age}");
     }
 }
