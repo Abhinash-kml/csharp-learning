@@ -1,4 +1,5 @@
 using System.IO;
+using System.Runtime.CompilerServices;
 
 Wrapper<int> w = new Wrapper<int>(109);
 w.Describe();
@@ -7,6 +8,9 @@ ww.Describe();
 GenericStruct<int> gs = new GenericStruct<int>();
 gs.Data = 100;
 gs.Describe();
+
+Utility.Perform<int>();
+Utility.Perform<GenericStruct<int>>();
 public class Wrapper<T>
 {
     public T Data { get; set; }
@@ -28,5 +32,13 @@ public struct GenericStruct<T>
     public void Describe()
     {
         Console.WriteLine($"The internal data type is {typeof(T)}");
+    }
+}
+
+public static class Utility
+{
+    public static void Perform<T>()
+    {
+        Console.WriteLine($"The type of T is {typeof(T)}");
     }
 }
