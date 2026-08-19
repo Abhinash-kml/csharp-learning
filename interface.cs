@@ -7,6 +7,7 @@ ent.Describe();
 
 public class Entity : IDescribable
 {
+    public string Name => "Name";
     public void Describe()
     {
         Console.WriteLine("Interface implemented");
@@ -17,5 +18,6 @@ public class NotEntity {}
 
 public interface IDescribable
 {
+    public string Name { get; }
     public void Describe();
 }
