@@ -46,3 +46,5 @@ public interface ISay
 {
     public void Describe();
 }
+
+public interface InheritedIFace : IDescribable, ISay{}
