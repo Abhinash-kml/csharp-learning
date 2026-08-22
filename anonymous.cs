@@ -12,3 +12,12 @@ Console.WriteLine($"Name = {human.student.Name} | Class = {human.student.Class}"
 // Equals method for equality checks which checks by value
 var student2 = new { Name = "Student1", Class = 10};
 Console.WriteLine($"Both the students are {student2.Equals(student)}");
+
+// Nested anonymous type
+var order = new
+{
+    Id = Guid.CreateVersion7(),
+    State = "Kolkata",
+    Customer = new { Name = "Customer1", Age = 10 }
+};
+Console.WriteLine(order.ToString());
