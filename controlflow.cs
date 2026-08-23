@@ -21,3 +21,30 @@ if (meow is not null)
 
 if (meow is int val)
     Console.WriteLine($"Value = {val}");
+
+State s = State.On;
+s switch
+{
+    State.On => Console.WriteLine("On"),
+    State.Off => Console.WriteLine("Off"),
+    State.Deafult => Console.WriteLine("Deafault"),
+    _ => Console.WriteLine("None")
+};
+
+string ss = "neo";
+switch (ss)
+{
+    case "neo":
+    Console.WriteLine("neo");
+    break;
+
+    case "peo":
+    Console.WriteLine("peo");
+    break;
+}
+enum State
+{
+    Deafult,
+    On,
+    Off
+}
