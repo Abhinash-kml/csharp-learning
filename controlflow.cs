@@ -8,3 +8,16 @@ int calculated = value switch
     _ => 100
 };
 Console.WriteLine(calculated);
+
+int? meow = null;
+
+if (meow is null)
+    Console.WriteLine("Null");
+
+meow = 10;
+
+if (meow is not null)
+    Console.WriteLine("Not null");
+
+if (meow is int val)
+    Console.WriteLine($"Value = {val}");
