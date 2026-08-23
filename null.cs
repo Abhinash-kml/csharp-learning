@@ -1,7 +1,7 @@
 using System.IO;
 
 // Nullish type
-int? a = 10;
+int? a = null;
 Console.WriteLine(a);
 if (a is null)
     Console.WriteLine("a is null");
@@ -16,3 +16,8 @@ Console.WriteLine(a?.ToString());
 // Evaluates left operand and returns its value if its not null else returns right one
 int b = a ?? 100;
 Console.WriteLine(b);
+
+// Null assignment operator
+// Assign value to left operand only if it is null, else no-op;
+a ??= 2000;
+Console.WriteLine(a);
