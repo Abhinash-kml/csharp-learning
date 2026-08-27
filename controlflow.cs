@@ -1,5 +1,16 @@
 using System.IO;
 
+static int CheckEntity(Entity ent)
+{
+    ent switch
+    {
+        {Health: < 10, Ammo: < 10} => 10,
+        {Health: >= 10, Ammo: >= 10} => 20,
+        {Health: <= 50, Ammo: <= 50} => 40,
+        null => 1000
+    };
+}
+
 int value = 20;
 int calculated = value switch
 {
@@ -42,9 +53,13 @@ switch (ss)
     Console.WriteLine("peo");
     break;
 }
+
+int entityVal = CheckEntity(new Entity(Health: 10, Ammo: 10));
+Console.WriteLine(entityVal);
 enum State
 {
     Deafult,
     On,
     Off
 }
+public record class Entity(int Health, int Ammo);
