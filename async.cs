@@ -2,7 +2,8 @@ using System.Diagnostics;
 using System.IO;
 
 Entity e = new();
-await e.Process();
+// await e.Process();
+await e.ProcessAll();
 
 public class Entity
 {
@@ -31,5 +32,26 @@ public class Entity
     {
         Thread.Sleep(3000);
         return 10;
+    }
+
+    public async Task<int> ProcessTaskWithvalue()
+    {
+        return 10;
+    }
+
+    public async Task ProcessAll()
+    {
+        Stopwatch s = new Stopwatch();
+        s.Start();
+
+        Task<int> intTask = ProcessInt();
+        Task<string> stringTask = ProcessString();
+        await Task.WhenAll(intTask, stringTask);
+        Console.WriteLine("Processed all tasks");
+        // Console.WriteLine(result.ToString());
+
+        s.Stop();
+        TimeSpan elapsed = s.Elapsed;
+        Console.WriteLine($"Elapsed seconds = {elapsed.TotalSeconds}");
     }
 }
