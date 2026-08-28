@@ -14,6 +14,13 @@ Console.WriteLine($"{aaa}, {bbb}");
 
 var (aaaa, bbbb, cccc) = Entity;
 Console.WriteLine($"{aaaa}, {bbbb}, {cccc}");
+
+int ia;
+float fb;
+string sc;
+(ia, fb, sc) = Entity;
+
+Console.WriteLine($"{ia}, {fb}, {sc}");
 public class Entity
 {
     private int _a = 100;
