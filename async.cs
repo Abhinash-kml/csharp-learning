@@ -1,9 +1,25 @@
+using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 
 Entity e = new();
 // await e.Process();
 await e.ProcessAll();
+
+Task<int> a = e.ProcessInt();
+await a.ContinueWith(intTask =>
+{
+    int val = intTask.Result;
+    Console.WriteLine($"Int Task result = {val}");
+    return e.ProcessString();
+})
+.Unwrap()
+.ContinueWith(strTask =>
+{
+    string val = strTask.Result;
+    Console.WriteLine($"String task value = {val}");
+});
 
 public class Entity
 {
