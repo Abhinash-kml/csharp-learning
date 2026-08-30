@@ -9,6 +9,24 @@ Entity e = new Entity
 };
 Console.WriteLine(e.ID);
 
+EntityWrapper w = new EntityWrapper
+{
+    Id = Guid.CreateVersion7(),
+    Entity = new Entity
+    {
+        Name = "Wrapped Entity",
+        Age = 16
+    }
+};
+
+Console.WriteLine(w.ToString());
+
+public class EntityWrapper
+{
+    public Guid Id { get; set; }
+    public Entity Entity { get; set; }
+}
+
 public class Entity
 {
     public Guid ID { get; init; } = Guid.CreateVersion7();
