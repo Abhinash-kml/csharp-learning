@@ -33,6 +33,14 @@ Console.WriteLine(string.Join(",", combined));
 List<int> l3 = [1, 2, 3, 4, 5];
 Console.WriteLine(string.Join(",", l3));
 
+Dictionary<string, int> map = new Dictionary<string, int>
+{
+    {"aaa", 10},
+    {"bbb", 20}
+};
+foreach (var (key, value) in map)
+    Console.WriteLine($"{key} - {value}");
+
 public class EntityWrapper
 {
     public Guid Id { get; set; }
