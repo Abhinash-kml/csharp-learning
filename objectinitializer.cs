@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 
@@ -20,6 +21,17 @@ EntityWrapper w = new EntityWrapper
 };
 
 Console.WriteLine(w.ToString());
+
+List<int> l1 = new List<int>{ 1, 2, 3, 4, 5};
+List<int> l2 = new List<int>{ 6, 7, 8, 9, 10};
+Console.WriteLine(string.Join(",", l1));
+Console.WriteLine(string.Join(",", l2));
+
+List<int> combined = [..l1, ..l2];
+Console.WriteLine(string.Join(",", combined));
+
+List<int> l3 = [1, 2, 3, 4, 5];
+Console.WriteLine(string.Join(",", l3));
 
 public class EntityWrapper
 {
