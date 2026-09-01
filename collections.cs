@@ -69,3 +69,25 @@ s1.Remove(3);
 Console.WriteLine(string.Join(", ", s1));
 s1.Clear();
 Console.WriteLine(string.Join(", ", s1));
+
+// String
+string str1 = "I am a very good boy";
+Console.WriteLine(string.IsNullOrEmpty(str1));
+foreach (var c in str1)
+    Console.Write(c);
+Console.Write('\n');
+
+Console.WriteLine(str1.Length);
+Console.WriteLine(str1.Contains("am"));
+
+string[] parts = str1.Split(" ");
+foreach (var part in parts)
+    Console.Write(part);
+Console.Write('\n');
+
+Console.WriteLine(str1.Substring(4));
+Console.WriteLine(str1 + str1.Substring(4));
+str1 += "And you know that";
+Console.WriteLine(str1);
+Console.WriteLine(str1.ToLower());
+Console.WriteLine(str1.ToUpper());
