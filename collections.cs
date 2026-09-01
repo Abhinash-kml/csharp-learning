@@ -56,3 +56,16 @@ q1.Clear();
 Console.WriteLine(string.Join(", ", q1));
 
 // Set
+HashSet<int> s1 = new();
+s1.Add(1);
+s1.Add(2);
+s1.Add(3);
+Console.WriteLine(string.Join(", ", s1));
+s1.Add(1);
+s1.Add(2);
+Console.WriteLine(string.Join(", ", s1));
+Console.WriteLine(s1.Contains(2));
+s1.Remove(3);
+Console.WriteLine(string.Join(", ", s1));
+s1.Clear();
+Console.WriteLine(string.Join(", ", s1));
