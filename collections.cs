@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 // List -- dynamic array
 List<int> l1 = [1, 2, 3, 4, 5];
@@ -91,3 +92,24 @@ str1 += "And you know that";
 Console.WriteLine(str1);
 Console.WriteLine(str1.ToLower());
 Console.WriteLine(str1.ToUpper());
+
+// Encoding
+byte[] bytesU8 = Encoding.UTF8.GetBytes(str1);
+foreach (var b in bytesU8)
+    Console.Write(b);
+Console.WriteLine();
+
+byte[] byteASCII = Encoding.ASCII.GetBytes(str1);
+foreach (var b in byteASCII)
+    Console.Write(b);
+Console.WriteLine();
+
+byte[] byteUNICODE = Encoding.Unicode.GetBytes(str1);
+foreach (var b in byteUNICODE)
+    Console.Write(b);
+Console.WriteLine();
+
+// Decoding
+Console.WriteLine(Encoding.UTF8.GetString(bytesU8));
+Console.WriteLine(Encoding.ASCII.GetString(byteASCII));
+Console.WriteLine(Encoding.Unicode.GetString(byteUNICODE));
