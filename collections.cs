@@ -41,6 +41,18 @@ Console.WriteLine(d1.ContainsKey(4));
 Console.WriteLine(d1.ContainsValue("4"));
 
 // Queue
-
+Queue<int> q1 = new();
+q1.Enqueue(1);
+q1.Enqueue(2);
+q1.Enqueue(3);
+q1.Enqueue(4);
+q1.Enqueue(5);
+Console.WriteLine(string.Join(", ", q1));
+q1.Dequeue();
+Console.WriteLine(string.Join(", ", q1));
+Console.WriteLine(q1.Capacity);
+Console.WriteLine(q1.Count);
+q1.Clear();
+Console.WriteLine(string.Join(", ", q1));
 
 // Set
