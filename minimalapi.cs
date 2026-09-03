@@ -15,11 +15,24 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 });
 var app = builder.Build();
 
-app.MapGet("/api/hello", () => "Hello from single file minimal api");
-app.MapGet("/api/{id}", (int id) =>
+// Build route groups
+RouteGroupBuilder publicRoutes = app.MapGroup("api/public");
+RouteGroupBuilder privateRoutes = app.MapGroup("api/private");
+
+// Public routes
+publicRoutes.MapGet("/hello", () => "Hello from public route");
+publicRoutes.MapGet("/{id:int}", (int id) =>
 {
-    return id;
+    return $"Int id is {id}";
 });
+
+// Private routes
+privateRoutes.MapGet("/hello", () => "Hello from private route");
+privateRoutes.MapGet("/{id:int}", (int id) =>
+{
+    return $"Int id is {id}";
+});
+
 
 app.Run("http://localhost:8000");
 
