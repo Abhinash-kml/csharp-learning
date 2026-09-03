@@ -10,7 +10,10 @@ Console.WriteLine(json);
 Entity f = JsonSerializer.Deserialize<Entity>(json, EntityContext.Default.Entity);
 Console.WriteLine(f.Id);
 
-[JsonSourceGenerationOptions(IncludeFields = true)]
+[JsonSourceGenerationOptions(
+    IncludeFields = true,
+    WriteIndented = true
+)]
 [JsonSerializable(typeof(Entity))]
 public partial class EntityContext : JsonSerializerContext {}
 public struct Entity
