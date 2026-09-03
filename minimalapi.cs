@@ -25,6 +25,13 @@ publicRoutes.MapGet("/{id:int}", (int id) =>
 {
     return $"Int id is {id}";
 });
+publicRoutes.MapGet("/typed", () => TypedResults.Ok());
+publicRoutes.MapGet("/entity", () => TypedResults.Ok<EntityDto>(new EntityDto
+{
+    Id = Guid.CreateVersion7(),
+    Name = "Neo",
+    Health = 100
+}));
 
 // Private routes
 privateRoutes.MapGet("/hello", () => "Hello from private route");
@@ -36,6 +43,9 @@ privateRoutes.MapGet("/{id:int}", (int id) =>
 
 app.Run("http://localhost:8000");
 
+public record struct EntityDto(Guid Id, string Name, int Health);
+
 [JsonSerializable(typeof(int))]
 [JsonSerializable(typeof(float))]
+[JsonSerializable(typeof(EntityDto))]
 public partial class MyJsonSerializerContext : JsonSerializerContext{}
