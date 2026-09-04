@@ -17,6 +17,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.TypeInfoResolver = MyJsonSerializerContext.Default;
 });
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 app.UseDeveloperExceptionPage();
@@ -43,6 +44,13 @@ publicRoutes.MapGet("/entity", () => TypedResults.Ok<EntityDto>(new EntityDto
 publicRoutes.MapGet("/exception", () => {
     throw new ArgumentException("Invalid argument");
 });
+publicRoutes.MapGet("/problem", () => TypedResults.Problem(
+    detail: "www.xyx.com",
+    instance: "/////",
+    statusCode: 100,
+    title: "meow meow",
+    type: "meow"
+));
 
 // Private routes
 privateRoutes.MapGet("/hello", () => "Hello from private route");
