@@ -8,12 +8,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    EnvironmentName = Environments.Development
+});
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.TypeInfoResolver = MyJsonSerializerContext.Default;
 });
+
 var app = builder.Build();
+app.UseDeveloperExceptionPage();
+
+Console.WriteLine($"App is running in {app.Environment.EnvironmentName} enviroment");
 
 // Build route groups
 RouteGroupBuilder publicRoutes = app.MapGroup("api/public");
@@ -32,6 +40,9 @@ publicRoutes.MapGet("/entity", () => TypedResults.Ok<EntityDto>(new EntityDto
     Name = "Neo",
     Health = 100
 }));
+publicRoutes.MapGet("/exception", () => {
+    throw new ArgumentException("Invalid argument");
+});
 
 // Private routes
 privateRoutes.MapGet("/hello", () => "Hello from private route");
