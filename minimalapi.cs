@@ -62,6 +62,15 @@ publicRoutes.MapGet("/context", (HttpContext context) =>
     Console.WriteLine($"Protocol: {context.Request.Protocol}");
     Console.WriteLine($"Path: {context.Request.Path.Value}");
     Console.WriteLine($"Query: {context.Request.QueryString.Value}");
+
+    var queries = context.Request.Query;
+    foreach (var (query, value) in queries)
+        Console.WriteLine($"Query: {query} - Value: {value}");
+
+    var headers = context.Request.Headers;
+    Console.WriteLine("Headers:");
+    foreach (var (header, value) in headers)
+        Console.WriteLine($"Header: {header} - Value: {value}");
 });
 
 // Private routes
