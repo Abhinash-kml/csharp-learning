@@ -72,6 +72,10 @@ publicRoutes.MapGet("/context", (HttpContext context) =>
     foreach (var (header, value) in headers)
         Console.WriteLine($"Header: {header} - Value: {value}");
 });
+publicRoutes.MapMethods("/query", ["QUERY"], (HttpContext context) =>
+{
+    return Results.Ok("Used QUERY Method");
+});
 
 // Private routes
 privateRoutes.MapGet("/hello", () => "Hello from private route");
