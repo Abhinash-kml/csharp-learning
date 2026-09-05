@@ -51,6 +51,18 @@ publicRoutes.MapGet("/problem", () => TypedResults.Problem(
     title: "meow meow",
     type: "meow"
 ));
+publicRoutes.MapGet("/context", (HttpContext context) =>
+{
+    Console.WriteLine($" --- Request ---");
+    Console.WriteLine($"Host: {context.Request.Host.Host}");
+    Console.WriteLine($"Protocol: {context.Request.Protocol}");
+    Console.WriteLine($"Content-Length: {context.Request.ContentLength ?? 0}");
+    Console.WriteLine($"Content-Type: {context.Request.ContentType ?? "No content"}");
+    Console.WriteLine($"Scheme: {context.Request.Scheme}");
+    Console.WriteLine($"Protocol: {context.Request.Protocol}");
+    Console.WriteLine($"Path: {context.Request.Path.Value}");
+    Console.WriteLine($"Query: {context.Request.QueryString.Value}");
+});
 
 // Private routes
 privateRoutes.MapGet("/hello", () => "Hello from private route");
