@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -84,6 +85,14 @@ publicRoutes.MapGet("/implicit/{id:int}", (int id, string type) =>
 {
     return Results.Ok($"Path: {id} - Query: {type}");
 });
+publicRoutes.MapGet("/explicit/{id:int}", ([FromRoute] int id, [FromQuery] string type) =>
+{
+    return Results.Ok(new Data
+    {
+        Id = id,
+        Type = type
+    });
+});
 
 // Private routes
 privateRoutes.MapGet("/hello", () => "Hello from private route");
@@ -96,8 +105,11 @@ privateRoutes.MapGet("/{id:int}", (int id) =>
 app.Run("http://localhost:8000");
 
 public record struct EntityDto(Guid Id, string Name, int Health);
+public record struct Data(int Id, string Type);
+
 
 [JsonSerializable(typeof(int))]
 [JsonSerializable(typeof(float))]
 [JsonSerializable(typeof(EntityDto))]
+[JsonSerializable(typeof(Data))]
 public partial class MyJsonSerializerContext : JsonSerializerContext{}
