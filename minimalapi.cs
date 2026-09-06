@@ -51,7 +51,7 @@ publicRoutes.MapGet("/problem", () => TypedResults.Problem(
     title: "meow meow",
     type: "meow"
 ));
-publicRoutes.MapGet("/context", (HttpContext context) =>
+publicRoutes.MapGet("/context", async (HttpContext context) =>
 {
     Console.WriteLine($" --- Request ---");
     Console.WriteLine($"Host: {context.Request.Host.Host}");
@@ -71,10 +71,18 @@ publicRoutes.MapGet("/context", (HttpContext context) =>
     Console.WriteLine("Headers:");
     foreach (var (header, value) in headers)
         Console.WriteLine($"Header: {header} - Value: {value}");
+
+    var reader = new StreamReader(context.Request.Body);
+    string body = await reader.ReadToEndAsync();
+    Console.WriteLine($"Body:\n{body}");
 });
 publicRoutes.MapMethods("/query", ["QUERY"], (HttpContext context) =>
 {
     return Results.Ok("Used QUERY Method");
+});
+publicRoutes.MapGet("/implicit/{id:int}", (int id, string type) =>
+{
+    return Results.Ok($"Path: {id} - Query: {type}");
 });
 
 // Private routes
