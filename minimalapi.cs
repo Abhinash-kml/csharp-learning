@@ -85,12 +85,15 @@ publicRoutes.MapGet("/implicit/{id:int}", (int id, string type) =>
 {
     return Results.Ok($"Path: {id} - Query: {type}");
 });
-publicRoutes.MapGet("/explicit/{id:int}", ([FromRoute] int id, [FromQuery] string type) =>
+publicRoutes.MapGet("/explicit/{id:int}", ([FromRoute] int id, 
+                                           [FromQuery] string type,
+                                           [FromBody] BodyData body) =>
 {
     return Results.Ok(new Data
     {
         Id = id,
-        Type = type
+        Type = type,
+        Dataa = body
     });
 });
 
@@ -105,11 +108,13 @@ privateRoutes.MapGet("/{id:int}", (int id) =>
 app.Run("http://localhost:8000");
 
 public record struct EntityDto(Guid Id, string Name, int Health);
-public record struct Data(int Id, string Type);
+public record struct Data(int Id, string Type, BodyData Dataa);
+public record struct BodyData(string A, string B, string C);
 
 
 [JsonSerializable(typeof(int))]
 [JsonSerializable(typeof(float))]
 [JsonSerializable(typeof(EntityDto))]
 [JsonSerializable(typeof(Data))]
+[JsonSerializable(typeof(BodyData))]
 public partial class MyJsonSerializerContext : JsonSerializerContext{}
